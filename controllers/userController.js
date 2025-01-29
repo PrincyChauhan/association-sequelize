@@ -25,4 +25,18 @@ const belongsTo = async (req, res) => {
   res.json(data);
 };
 
-module.exports = { oneToOne, belongsTo };
+const oneToMany = async (req, res) => {
+  let data = await User.findOne({
+    attributes: ["name", "email"],
+    include: [
+      {
+        model: Post,
+        attributes: ["title", ["name", "postName"]],
+      },
+    ],
+    where: { id: 1 },
+  });
+  res.json(data);
+};
+
+module.exports = { oneToOne, belongsTo, oneToMany };
