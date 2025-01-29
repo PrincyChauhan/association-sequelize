@@ -12,4 +12,17 @@ const oneToOne = async (req, res) => {
   res.json(data);
 };
 
-module.exports = { oneToOne };
+const belongsTo = async (req, res) => {
+  let data = await Post.findAll({
+    attributes: ["title", "content"],
+    include: [
+      {
+        model: User,
+        attributes: ["name", "email"],
+      },
+    ],
+  });
+  res.json(data);
+};
+
+module.exports = { oneToOne, belongsTo };
