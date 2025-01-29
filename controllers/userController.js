@@ -1,4 +1,4 @@
-const { Post, User, Tag } = require("../models");
+const { Post, User, Tag, Image, Video, Comment } = require("../models");
 
 const oneToOne = async (req, res) => {
   let data = await User.findAll({
@@ -62,4 +62,30 @@ const ManyToMany = async (req, res) => {
   //   });
 };
 
-module.exports = { oneToOne, belongsTo, oneToMany, ManyToMany };
+const poylmorphic = async (req, res) => {
+  // image to comment
+  //   let data = await Image.findAll({
+  //     include: [
+  //       {
+  //         model: Comment,
+  //       },
+  //     ],
+  //   });
+
+  //   video to comment
+  //   let data = await Video.findAll({
+  //     include: [
+  //       {
+  //         model: Comment,
+  //       },
+  //     ],
+  //   });
+  //comment too video/image
+
+  let data = await Comment.findAll({
+    include: [Image, Video],
+  });
+  res.json(data);
+};
+
+module.exports = { oneToOne, belongsTo, oneToMany, ManyToMany, poylmorphic };

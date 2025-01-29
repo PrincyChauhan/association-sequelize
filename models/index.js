@@ -3,9 +3,12 @@ const User = require("./user");
 const Post = require("./post");
 const Tag = require("./tag");
 const PostTag = require("./posttag");
+const Image = require("./image");
+const Comment = require("./comment");
+const Video = require("./video");
 const applyAssociations = require("./association");
 
-const db = { sequelize, User, Post, Tag, PostTag };
+const db = { sequelize, User, Post, Tag, PostTag, Image, Comment, Video };
 
 // Apply associations after defining models
 applyAssociations(db);
