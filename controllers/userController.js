@@ -1,4 +1,4 @@
-const { Post, User } = require("../models");
+const { Post, User, Tag } = require("../models");
 
 const oneToOne = async (req, res) => {
   let data = await User.findAll({
@@ -39,4 +39,27 @@ const oneToMany = async (req, res) => {
   res.json(data);
 };
 
-module.exports = { oneToOne, belongsTo, oneToMany };
+const ManyToMany = async (req, res) => {
+  //   post to tag
+  let data = await Post.findAll({
+    attributes: ["title", "content"],
+    include: [
+      {
+        model: Tag,
+        attributes: ["name"],
+      },
+    ],
+  });
+  res.json(data);
+  //   tag to post
+  //   let data = await Tag.findAll({
+  //     include: [
+  //       {
+  //         model: Post,
+  //         attributes: ["title"],
+  //       },
+  //     ],
+  //   });
+};
+
+module.exports = { oneToOne, belongsTo, oneToMany, ManyToMany };

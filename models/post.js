@@ -8,12 +8,18 @@ const Post = sequelize.define(
     title: { type: DataTypes.STRING },
     content: { type: DataTypes.STRING },
     user_id: { type: DataTypes.INTEGER },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
   },
   {
-    timestamps: false,
+    timestamps: true,
     tableName: "posts",
-    createdAt: "created_at",
-    updatedAt: "modified_at",
   }
 );
 

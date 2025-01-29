@@ -1,12 +1,10 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-const User = sequelize.define(
-  "User",
+const Tag = sequelize.define(
+  "Tag",
   {
     name: { type: DataTypes.STRING, allowNull: false },
-    email: { type: DataTypes.STRING, allowNull: false },
-    gender: { type: DataTypes.STRING, allowNull: false },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: new Date(),
@@ -16,10 +14,11 @@ const User = sequelize.define(
       defaultValue: new Date(),
     },
   },
+
   {
     timestamps: true,
-    tableName: "users",
+    tableName: "tags",
   }
 );
 
-module.exports = User;
+module.exports = Tag;
